@@ -1,3 +1,4 @@
+
 from flask import Flask, jsonify, render_template
 
 app = Flask(__name__)
@@ -238,15 +239,51 @@ missions = {
         ]
     }
 }
-# Route to serve the mission data
-@app.route('/missions', methods=['GET'])
-def get_missions():
-    return jsonify(missions)
+
+# Retrieve mission by name
+def get_mission_by_name(name):
+    return missions.get(name, None)
+
+# Retrieve missions by status
+def get_missions_by_status(status):
+    return {name: data for name, data in missions.items() if data["status"].lower() == status.lower()}
+
+# Retrieve key achievements of a mission by name
+def get_mission_achievements(name):
+    mission = missions.get(name)
+    return mission["key_achievements"] if mission else []
 
 # Main route to render the frontend
 @app.route('/')
 def index():
     return render_template('index.html')
+
+# Route to serve all mission data
+@app.route('/missions', methods=['GET'])
+def get_missions():
+    return jsonify(missions)
+
+# Route to serve a specific mission by name
+@app.route('/missions/<string:name>', methods=['GET'])
+def get_mission(name):
+    mission = get_mission_by_name(name)
+    if mission:
+        return jsonify(mission)
+    return jsonify({"error": "Mission not found"}), 404
+
+# Route to serve missions filtered by status
+@app.route('/missions/status/<string:status>', methods=['GET'])
+def get_missions_status(status):
+    filtered_missions = get_missions_by_status(status)
+    return jsonify(filtered_missions)
+
+# Route to serve key achievements of a specific mission
+@app.route('/missions/<string:name>/achievements', methods=['GET'])
+def get_achievements(name):
+    achievements = get_mission_achievements(name)
+    if achievements:
+        return jsonify(achievements)
+    return jsonify({"error": "Achievements not found"}), 404
 
 if __name__ == '__main__':
     app.run(debug=True)
