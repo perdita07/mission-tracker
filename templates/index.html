@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Space Mission Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1>Space Mission Tracker</h1>
+            <p>Explore and track exciting space missions in one place.</p>
+        </header>
+
+        <!-- Instructions -->
+        <section id="instructions">
+            <h3>How to Use</h3>
+            <ul>
+                <li>Search for a mission by typing its name in the search bar.</li>
+                <li>View live suggestions as you type.</li>
+                <li>Click on a mission to view detailed information.</li>
+            </ul>
+        </section>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="Search missions..." onkeyup="searchMissions()">
+        </div>
+
+        <!-- Mission List -->
+        <div id="mission-list" class="mission-list hidden">
+            <!-- Dynamically populated mission cards will appear here -->
+        </div>
+
+        <!-- Mission Details -->
+        <div id="mission-details" class="mission-details hidden">
+            <!-- Detailed mission information will appear here -->
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
