@@ -9,7 +9,7 @@ The Space Mission Tracker website is an interactive tool for tracking space miss
 
  Main Files
 
-1. project.py
+<u>1. project.py</u>
 This is the main Python file that runs the backend of the application. It uses Flask to create a web server and route requests to the appropriate pages.
 
 2. requirements.txt
