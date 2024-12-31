@@ -42,4 +42,4 @@ This is the background image used in the application.
 
  ![image](https://github.com/user-attachments/assets/88514341-e679-4a4b-a295-7cc5886fd247)
 
- Initially, the design included a homepage displaying the existing database as mission cards as shown above but it was changed to the current design as it was deemed too cramped.
+ Initially, the design included a homepage displaying the existing database as mission cards as shown above but it was changed to the current design as it seemed too cramped.
